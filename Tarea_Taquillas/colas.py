@@ -88,8 +88,14 @@ class GUI():
 
     # Ingresar la opción
     def Choose():
-        system("clear")
-        option = input("Ingrese su nombre y el número de la taquilla a la que se dirige: ").split("-")
+        system("cls")
+        option = input().split("-")
+        return option
+
+    def LastChoose():
+        system("cls")
+        print("-"*35)
+        option = input("\n1. Agregar\n2. Eliminar\n3. Ver las colas\n4. Terminar proceso\n\n¿Que desea hacer?: ")
         return option
 
     # Verificar la opción de taquilla y agregar la persona a dicha taquilla
@@ -114,6 +120,8 @@ class GUI():
             self.lst9.Enqueue(op[0],op[1])
         elif op[1] == '10':
             self.lst10.Enqueue(op[0],op[1])
+        else:
+            print("\n- ERROR: No existe esa taquilla")
 
     # Eliminar a una persona de la cola
     def Delete(self,op):
@@ -137,10 +145,133 @@ class GUI():
                 self.lst9.Dequeue()
         elif op == '10':
                 self.lst10.Dequeue()
+        else:
+            print("\n- ERROR: No existe esa taquilla")
+
+    # Mostrar la cantidad de personas restantes en la cola que el usuario elija
+    def Checkout(self):
+        system("cls")
+        option = input("\nIngrese la taquilla de la cual desea ver cuantas personas quedaron: ")
+        if option == '1':
+            self.lst1.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst1.size)
+        elif option == '2':
+            self.lst2.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst2.size)
+        elif option == '3':
+            self.lst3.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst3.size)
+        elif option == '4':
+            self.lst4.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst4.size)
+        elif option == '5':
+            self.lst5.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst5.size)
+        elif option == '6':
+            self.lst6.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst6.size)
+        elif option == '7':
+            self.lst7.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst7.size)
+        elif option == '8':
+            self.lst8.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst8.size)
+        elif option == '9':
+            self.lst9.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst9.size)
+        elif option == '10':
+            self.lst10.Show()
+            print("-"*35,"\nTotal personas restantes: ", self.lst10.size)
+        else:
+            print("\n- ERROR: No existe esa taquilla")
+
+        abc = input("Pulse cualquier tecla para continuar...")
+
+    def LastAdd(self):
+        system("cls")
+        name = input("Ingrese su nombre: ")
+        op = input("\n1. Adquisición teléfono nuevo\n2. Cambio de plan\n3. Cancelación de plan\n4. Solución de problema técnico\n5. Pago de facturas vencidas\n\nIngrese el nombre del servicio para el cual viene: ")
+        if op == '1':
+            if self.lst1.size < 15:
+                self.lst1.Enqueue(name, '1')
+            else:
+                if self.lst2.size < 15:
+                    self.lst2.Enqueue(name, '2')
+                    abc = input("\nUsted fue puesto en la segunda taquilla para el servicio seleccionado\n\nPresione cualquier tecla para continuar...")
+                else:
+                    abc = input("\nAmbas taquillas están llenas, lo sentimos.\n\nPresione cualquier tecla para continuar...")
+                    
+        elif op == '2':
+            if self.lst3.size < 15:
+                self.lst3.Enqueue(name, '3')
+            else:
+                if self.lst4.size < 15:
+                    self.lst4.Enqueue(name, '4')
+                    abc = input("\nUsted fue puesto en la segunda taquilla para el servicio seleccionado\n\nPresione cualquier tecla para continuar...")
+                else:
+                    abc = input("\nAmbas taquillas están llenas, lo sentimos.\n\nPresione cualquier tecla para continuar...")
+        elif op == '3':
+            if self.lst5.size < 15:
+                self.lst5.Enqueue(name, '5')
+            else:
+                if self.lst6.size < 15:
+                    self.lst6.Enqueue(name, '6')
+                    abc = input("\nUsted fue puesto en la segunda taquilla para el servicio seleccionado\n\nPresione cualquier tecla para continuar...")
+                else:
+                    abc = input("\nAmbas taquillas están llenas, lo sentimos.\n\nPresione cualquier tecla para continuar...")
+        elif op == '4':
+            if self.lst7.size < 15:
+                self.lst7.Enqueue(name, '7')
+            else:
+                if self.lst8.size < 15:
+                    self.lst8.Enqueue(name, '8')
+                    abc = input("\nUsted fue puesto en la segunda taquilla para el servicio seleccionado\n\nPresione cualquier tecla para continuar...")
+                else:
+                    abc = input("\nAmbas taquillas están llenas, lo sentimos.\n\nPresione cualquier tecla para continuar...")
+        elif op == '5':
+            if self.lst9.size < 15:
+                self.lst9.Enqueue(name, '9')
+            else:
+                if self.lst10.size < 15:
+                    self.lst10.Enqueue(name, '10')
+                    abc = input("\nUsted fue puesto en la segunda taquilla para el servicio seleccionado\n\nPresione cualquier tecla para continuar...")
+                else:
+                    abc = input("\nAmbas taquillas están llenas, lo sentimos.\n\nPresione cualquier tecla para continuar...")
+        
+        else:
+            print("\n- ERROR: No existe una taquilla con el servicio deseado.")
+
+    def LastDelete(self):
+        system("cls")
+        op = input("Ingrese el número de la taquilla de la cual desea eliminar a la primer persona: ")
+        if op == '1':
+            self.lst1.Dequeue()
+        elif op == '2':
+                self.lst2.Dequeue()
+        elif op == '3':
+                self.lst3.Dequeue()
+        elif op == '4':
+                self.lst4.Dequeue()
+        elif op == '5':
+                self.lst5.Dequeue()
+        elif op == '6':
+                self.lst6.Dequeue()
+        elif op == '7':
+                self.lst7.Dequeue()
+        elif op == '8':
+                self.lst8.Dequeue()
+        elif op == '9':
+                self.lst9.Dequeue()
+        elif op == '10':
+                self.lst10.Dequeue()
+        else:
+            print("\n- ERROR: No existe esa taquilla")
+
+
 
     # Inicio del programa
     def Start(self):
-        system("clear")
+        system("cls")
         for i in range(int(input("Ingrese la cantidad de personas que se van a ir a una taquilla: "))):
             thing = GUI.Choose()
             # Verificar si es un número
@@ -148,40 +279,21 @@ class GUI():
                 GUI.Delete(self,thing[0])
             else:   
                 GUI.Add(self,thing)
-        GUI.Checkout(self)
-    
+        GUI.End(self)
 
-    # Mostrar las colas al final
-    def Checkout(self):
-        system("clear")
-        option = input("\nIngrese la cola de la cual desea ver cuantas personas quedaron: ")
-        if option == '1':
-            self.lst1.Show()
-            print("Total personas restantes: ", self.lst1.size)
-        elif option == '2':
-            self.lst2.Show()
-            print("Total personas restantes: ", self.lst2.size)
-        elif option == '3':
-            self.lst3.Show()
-            print("Total personas restantes: ", self.lst3.size)
-        elif option == '4':
-            self.lst4.Show()
-            print("Total personas restantes: ", self.lst4.size)
-        elif option == '5':
-            self.lst5.Show()
-            print("Total personas restantes: ", self.lst5.size)
-        elif option == '6':
-            self.lst6.Show()
-            print("Total personas restantes: ", self.lst6.size)
-        elif option == '7':
-            self.lst7.Show()
-            print("Total personas restantes: ", self.lst7.size)
-        elif option == '8':
-            self.lst8.Show()
-            print("Total personas restantes: ", self.lst8.size)
-        elif option == '9':
-            self.lst9.Show()
-            print("Total personas restantes: ", self.lst9.size)
-        elif option == '10':
-            self.lst10.Show()
-            print("Total personas restantes: ", self.lst10.size)
+    def End(self):
+        # Menú final de opciones
+        while True:
+            thing = GUI.LastChoose()
+            if thing == '1':
+                GUI.LastAdd(self)
+            elif thing == '2':
+                GUI.LastDelete(self)
+            elif thing == '3':
+                GUI.Checkout(self)
+            elif thing == '4':
+                print("Gracias! Que tenga un buen día")
+                break
+            else:
+                print("- ERROR: No existe dicha opción")
+                abc = input("Presione cualquier tecla para continuar...")
